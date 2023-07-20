@@ -20,7 +20,16 @@ class _HomePageState extends State<HomePage> {
       ),
       body: ListView(
         children: [
-          ToDoTile()
+          ToDoTile(
+            taskName: "Make tutorial",
+            taskCompleted: false,
+            onChanged: (p) {},
+          ),
+          ToDoTile(
+            taskName: "Do exercise",
+            taskCompleted: false,
+            onChanged: (p) {},
+          )
         ],
       ),
     );
