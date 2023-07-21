@@ -21,16 +21,13 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
 
-    // If first time ever to load, create default data
-    // if (_myBox.get("TODOLIST") == null) {
-    //   db.createInitialData();
-    // } else {
-    //   // Data already exists
-    //   Boxes.getTasks().listenable();
-    // }
-
     // Reference the box
     taskBox = Boxes.getTasks();
+
+    // If first time ever to load, create default data
+    if (taskBox.values.isEmpty) {
+      createInitialData();
+    }
 
     super.initState();
   }
@@ -45,6 +42,16 @@ class _HomePageState extends State<HomePage> {
 
   // Text controller
   final _controller = TextEditingController();
+
+  void createInitialData() {
+    List<Task> initialToDoList = [
+      Task()..taskName = "Make tutorial"..taskCompleted = false,
+      Task()..taskName = "Do exercise"..taskCompleted = false,
+    ];
+
+    final box = Boxes.getTasks();
+    box.addAll(initialToDoList);
+  }
 
   // Checkbox action
   void checkBoxChanged(Task task, bool? value) {
