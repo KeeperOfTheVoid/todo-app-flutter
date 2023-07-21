@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:todo_app/model/task.dart';
 import 'package:todo_app/pages/home_page.dart';
 
 
@@ -8,8 +9,10 @@ void main() async {
   // Initialize the hive
   await Hive.initFlutter();
 
+  Hive.registerAdapter(TaskAdapter());
+
   // Open the box
-  var box = await Hive.openBox("mybox");
+  await Hive.openBox<Task>("myBox");
 
   runApp(const MyApp());
 }
